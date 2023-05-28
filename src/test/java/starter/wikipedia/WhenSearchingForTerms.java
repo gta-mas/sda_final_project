@@ -35,6 +35,7 @@ class WhenSearchingForTerms {
      * Page Objects are automatically initialised by Serenity.
      */
     DisplayedArticle displayedArticle;
+    //komentár
 
     @Test
     void searchBySingleKeyword() {
