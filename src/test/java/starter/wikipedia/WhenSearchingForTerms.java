@@ -17,7 +17,7 @@ class WhenSearchingForTerms {
     /**
      * Define the webdriver instance to be used for these tests
      */
-    @Managed(driver = "chrome", options = "headless")
+    @Managed(driver = "chrome")
     WebDriver driver;
 
     /**
@@ -38,8 +38,9 @@ class WhenSearchingForTerms {
 
     @Test
     void searchBySingleKeyword() {
+        driver.manage().window().maximize();
         navigate.toTheHomePage();
-        search.searchBy("Everest");
+        search.searchBy("Vysoké Tatry");
         Serenity.reportThat("The first heading should be 'Mount Everest'",
                 () -> assertThat(displayedArticle.getFirstHeading()).isEqualTo("Mount Everest")
         );
