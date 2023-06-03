@@ -55,7 +55,8 @@ class WhenSearchingForTerms {
         actions.sendKeysPassword("secret_sauce");
         actions.clickLoginButton();*/
         Assertions.assertEquals(expectedUrlAfterLogin,driver.getCurrentUrl());
-//
+        // login successful
+
 
 
 
