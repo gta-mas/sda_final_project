@@ -37,7 +37,7 @@ class WhenSearchingForTerms {
      * Page Objects are automatically initialised by Serenity.
      */
     DisplayedArticle displayedArticle;
-    //komentár
+
     private final String expectedUrlAfterLogin = "https://www.saucedemo.com/inventory.html";
 
     @Test
@@ -55,7 +55,7 @@ class WhenSearchingForTerms {
         actions.sendKeysPassword("secret_sauce");
         actions.clickLoginButton();*/
         Assertions.assertEquals(expectedUrlAfterLogin,driver.getCurrentUrl());
-        // login successful
+
 
 
 
