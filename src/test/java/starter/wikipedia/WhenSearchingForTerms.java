@@ -5,11 +5,13 @@ import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.SingleBrowser;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static org.assertj.core.api.Assertions.assertThat;
+import java.util.concurrent.TimeUnit;
 
 @ExtendWith(SerenityJUnit5Extension.class)
 class WhenSearchingForTerms {
@@ -36,23 +38,26 @@ class WhenSearchingForTerms {
      */
     DisplayedArticle displayedArticle;
     //komentár
+    private final String expectedUrlAfterLogin = "https://www.saucedemo.com/inventory.html";
 
     @Test
-    void searchBySingleKeyword() throws InterruptedException {
+    void loginPageValid() {
         driver.manage().window().maximize();
         navigate.toTheHomePage();
         /*search.searchBy("Vysoké Tatry");
         Serenity.reportThat("The first heading should be 'Mount Everest'",
                 () -> assertThat(displayedArticle.getFirstHeading()).isEqualTo("Mount Everest")
         );*/
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        Thread.sleep(2000);
-        driver.findElement(By.name("user-name")).clear();
-        Thread.sleep(2000);
-        driver.findElement(By.name("password")).sendKeys("secret_sauce");
-        Thread.sleep(2000);
-        driver.findElement(By.name("password")).clear();
-        Thread.sleep(2000);
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+        /*actions.sendKeysUsername("standard_user");
+        actions.sendKeysPassword("secret_sauce");
+        actions.clickLoginButton();*/
+        Assertions.assertEquals(expectedUrlAfterLogin,driver.getCurrentUrl());
+
+
+
 
         /*driver.findElement(By.xpath("//input[@value='Login']")).click();
         String errorMessage = driver.findElement(By.xpath(".error-message-container error")).getText();
